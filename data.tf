@@ -1,9 +1,17 @@
+# data "aws_vpc" "selected" {
+#   filter {
+#     name   = "tag:Name"
+#     values = ["*shared-vpc"]
+#   }
+# }
+
 data "aws_vpc" "selected" {
-  filter {
-    name   = "tag:Name"
-    values = ["shared-vpc"]
-  }
+  id = var.vpc_id
 }
+variable "vpc_id" {
+  default = "vpc-0a8963a83c4771c93"
+}
+
 
 data "aws_subnets" "public" {
   filter {
@@ -26,3 +34,4 @@ data "aws_subnets" "private" {
     values = ["*private*"]
   }
 }
+
